@@ -44,7 +44,7 @@ def connectSheet():
     creds = ServiceAccountCredentials.from_json_keyfile_name("<<<CREDENTIALS PATH>>>/creds.json", scope)
     client = gspread.authorize(creds)
 
-    sheet = client.open("milanesa").sheet1
+    sheet = client.open(<<<GOOGLE SHEETS NAME>>>).sheet1
 
     return sheet
 
