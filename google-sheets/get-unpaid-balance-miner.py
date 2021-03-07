@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver import FirefoxOptions
 import time
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
