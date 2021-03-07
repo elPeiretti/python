@@ -12,7 +12,9 @@ from datetime import datetime
 ##
 
 def connectWeb():
-    driver = webdriver.Firefox()
+    opts = FirefoxOptions()
+    opts.add_argument("--headless")
+    driver = webdriver.Firefox(options=opts)
     driver.get(<<<WALLET ADDRESS FROM HIVEOS>>>)
     time.sleep(2)
     refresh = driver.find_element_by_xpath("/html/body/div[1]/div[1]/div/section[1]/div/div/div/div")
