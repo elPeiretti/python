@@ -18,8 +18,6 @@ def connectWeb():
     driver = webdriver.Firefox(options=opts)
     driver.get(<<<WALLET ADDRESS FROM HIVEOS>>>)
     time.sleep(2)
-    refresh = driver.find_element_by_xpath("/html/body/div[1]/div[1]/div/section[1]/div/div/div/div")
-    refresh.click()
     return driver
 
 def getUnpaidBalance(driver):
@@ -65,7 +63,10 @@ DRIVER = connectWeb()
 SHEET = connectSheet()
 
 while(1):
-
+    
+    DRIVER.refresh() # refresh webpage to refresh values
+    time.sleep(3)
+    
     expected = getExpectedEarnings(DRIVER)
     unpaid = getUnpaidBalance(DRIVER)
     total = getTotalPaid(DRIVER)
