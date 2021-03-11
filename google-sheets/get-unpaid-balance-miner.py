@@ -9,7 +9,7 @@ from datetime import datetime
 ##
 ## GECKODRIVER PATH ERROR SOLUTION https://askubuntu.com/questions/851401/where-to-find-geckodriver-needed-by-selenium-python-package
 ## pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-## pip install oaut2client time datetime gspread selenium
+## pip install oauth2client datetime gspread selenium
 ##
 
 def connectWeb():
