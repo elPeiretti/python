@@ -3,6 +3,22 @@ import win32api
 import win32con
 # https://docs.microsoft.com/en-us/windows/win32/inputdev/mouse-input-notifications
 
+# returns the window's handler named WindowName
+# returns 0 if not found
+
+def getWindowHandlerByName(WindowName):
+    return win32gui.FindWindow(None,WindowName)
+
+# returns a list of all the windows handlers that contains WindowName in their names
+# WindowName argument is a String type
+
+def getWindowHandlersContaining(WindowName):
+    
+    hWndList = []
+    win32gui.EnumWindows( lambda hWnd,list:  list.append(hWnd), hWndList)
+
+    return list(filter(lambda h: win32gui.GetWindowText(h).find(WindowName)!=-1, hWndList))
+
 # Simulates left click at position (x,y), in the window handled by hWnd
 def leftClick(x, y, hWnd):
 
