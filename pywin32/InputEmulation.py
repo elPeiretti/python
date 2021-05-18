@@ -13,7 +13,6 @@ def getWindowHandlerByName(WindowName):
 # WindowName argument is a String type
 
 def getWindowHandlersContaining(WindowName):
-    
     hWndList = []
     win32gui.EnumWindows( lambda hWnd,list:  list.append(hWnd), hWndList)
 
