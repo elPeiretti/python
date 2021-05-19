@@ -19,6 +19,12 @@ def getWindowHandlersContaining(WindowName):
     return list(filter(lambda h: win32gui.GetWindowText(h).find(WindowName)!=-1, hWndList))
 
 
+# Simulates cursor movement to position (x,y)
+def moveCursor(x, y, hWnd):
+    lParam = win32api.MAKELONG(x,y)
+    win32gui.SendMessage(hWnd, win32con.WM_MOUSEMOVE,0,lParam)
+
+
 # Simulates left click at position (x,y), in the window handled by hWnd
 def leftClick(x, y, hWnd):
     lParam = win32api.MAKELONG(x, y)
