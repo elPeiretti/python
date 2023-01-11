@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class Prenota:
 
@@ -12,10 +14,11 @@ class Prenota:
     def login(self, user, pword):
         self.driver.get("https://prenotami.esteri.it/Services")
         login = self.driver.find_element(By.ID,"login-email")
-        login.send_keys(user)
         password = self.driver.find_element(By.ID,"login-password")
+        
+        login.send_keys(user)
         password.send_keys(pword)
-        self.driver.find_element(By.XPATH,"//*[@id='login-form']/button").click()
+        #self.driver.find_element(By.XPATH, "/html/body/main/div/section[1]/form/button").click()
 
     def pressPrenota(self):
         prenota_xpath = "//*[@id='dataTableServices']/tbody/tr[1]/td[4]/a/button"
