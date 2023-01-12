@@ -14,7 +14,7 @@ CREDENTIALS_PATH = '/home/elpeiretti/prenota.txt'
 def createInstances():
     i = 0
     instances = []
-    while i < TIME_AHEAD*60:
+    while i < TIME_AHEAD*60 + 20:
         instances.append(Prenota())
         i+=OFFSET
 
@@ -39,9 +39,9 @@ if __name__ == '__main__':
     current_t = datetime.datetime.now(pytz.timezone('Europe/Rome'))
     start_t = datetime.datetime(current_t.year, current_t.month, current_t.day,23,60-TIME_AHEAD,0, tzinfo=pytz.timezone('Europe/Rome'))
     print((start_t - current_t).total_seconds())
-    #time.sleep((start_t - current_t).total_seconds())
+    time.sleep((start_t - current_t).total_seconds())
     
-    time.sleep(120)
+    
     print("\n\n\n\n\n\n\nGO")
     #start clicking "Prenota" in each instance
     for instance in instances:
