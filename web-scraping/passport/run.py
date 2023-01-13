@@ -7,7 +7,7 @@ import pytz
 #Time (in minutes) before 00.00 to start sending petitions
 TIME_AHEAD = 1
 #Time (in seconds) between each "Prenota" button click, determines amount of instances needed
-OFFSET = 2
+OFFSET = 3
 #Path to file that contains the user and password
 CREDENTIALS_PATH = '/home/elpeiretti/prenota.txt'
 
@@ -38,7 +38,9 @@ if __name__ == '__main__':
     #Wait until 00.00 minus TIME_AHEAD
     current_t = datetime.datetime.now(pytz.timezone('Europe/Rome'))
     start_t = datetime.datetime(current_t.year, current_t.month, current_t.day,23,60-TIME_AHEAD,0, tzinfo=pytz.timezone('Europe/Rome'))
-    print((start_t - current_t).total_seconds())
+    wait_t = (start_t - current_t).total_seconds()
+    print("Current time is:", current_t)
+    print("Time to wait:",wait_t//3600, ":", (wait_t%60)//60,":", ((wait_t%60)/60)%60)
     time.sleep((start_t - current_t).total_seconds())
     
     
@@ -46,7 +48,6 @@ if __name__ == '__main__':
     #start clicking "Prenota" in each instance
     for instance in instances:
         Process(target=instance.pressPrenota).start()
-        #instance.pressPrenota()
         print("click")
         time.sleep(OFFSET)
     print("\n\nFinish")
