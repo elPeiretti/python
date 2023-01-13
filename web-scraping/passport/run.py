@@ -14,7 +14,7 @@ CREDENTIALS_PATH = '/home/elpeiretti/prenota.txt'
 def createInstances():
     i = 0
     instances = []
-    while i < TIME_AHEAD*60 + 20:
+    while i < TIME_AHEAD*60:
         instances.append(Prenota())
         i+=OFFSET
 
@@ -39,9 +39,12 @@ if __name__ == '__main__':
     current_t = datetime.datetime.now(pytz.timezone('Europe/Rome'))
     start_t = datetime.datetime(current_t.year, current_t.month, current_t.day,23,60-TIME_AHEAD,0, tzinfo=pytz.timezone('Europe/Rome'))
     wait_t = (start_t - current_t).total_seconds()
+    wait_t = 3600*(start_t.hour-current_t.hour) + 60* (start_t.minute-current_t.minute) + (start_t.second-current_t.second)
     print("Current time is:", current_t)
-    print("Time to wait:",wait_t//3600, ":", (wait_t%60)//60,":", ((wait_t%60)/60)%60)
-    time.sleep((start_t - current_t).total_seconds())
+    print("Start time is:",start_t)
+    print("Time to wait:",wait_t//3600, ":", (wait_t//60)%60,":", wait_t%60)
+
+    time.sleep(wait_t)
     
     
     print("\n\n\n\n\n\n\nGO")
