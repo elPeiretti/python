@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import logging
+import datetime
+from selenium.webdriver.chrome.options import Options
 
 USER = ""
 PWORD = ""
@@ -45,13 +47,16 @@ def success(driver):
     if message == not_available_message:
         driver.find_element(By.XPATH,not_available_ok).click()
     
+    print(datetime.datetime.now(),message)
     return message != not_available_message
     
     
 
 if __name__ == "__main__":
 
-    driver = webdriver.Chrome()
+    opt = Options()
+    opt.add_experimental_option("detach",True) #doesnt close chrome after finishing
+    driver = webdriver.Chrome(options=opt)
     logging.basicConfig(filename="prenota-log.txt",level=logging.DEBUG)
 
     login(driver)
@@ -63,6 +68,3 @@ if __name__ == "__main__":
             pressPrenota(driver)
         except Exception as e:
             logging.debug(e)
-
-
-    driver.quit()
